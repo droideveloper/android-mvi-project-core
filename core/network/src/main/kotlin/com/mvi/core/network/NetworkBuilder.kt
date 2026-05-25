@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import javax.inject.Inject
 
 class NetworkBuilder @Inject internal constructor(
-    private val env: Environment,
+    private val environment: Environment,
     private val builder: Retrofit.Builder,
     private val okHttpClient: OkHttpClient,
 ) {
@@ -24,13 +24,11 @@ class NetworkBuilder @Inject internal constructor(
         return this
     }
 
-    fun build(): Network = when {
-        env.isMock -> Network()
-        else -> Network(
-            retrofit = builder
-                .client(config.invoke(okHttpClient.newBuilder()))
-                .baseUrl(serviceUrl?.value ?: "https://example.org")
-                .build()
-        )
-    }
+    fun build(): Network = Network(
+        retrofit = builder
+            .client(config.invoke(okHttpClient.newBuilder()))
+            .baseUrl(serviceUrl?.value ?: "https://example.org")
+            .build(),
+        environment = environment,
+    )
 }
