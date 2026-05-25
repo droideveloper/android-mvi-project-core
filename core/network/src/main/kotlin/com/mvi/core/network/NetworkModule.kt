@@ -19,7 +19,7 @@ interface NetworkModule {
     companion object {
 
         @Provides
-        fun provideLoggInterceptor(env: Environment): Interceptor =
+        fun provideLogInterceptor(env: Environment): Interceptor =
             HttpLoggingInterceptor().setLevel(
                 level = when {
                     env.isDebug -> HttpLoggingInterceptor.Level.BODY
