@@ -16,6 +16,16 @@ import kotlin.time.Instant
  * The first value is always emitted immediately. Subsequent values are only emitted
  * if at least [delay] time has elapsed since the previous emission.
  *
+ * ## Example
+ * ```kotlin
+ *  flowOf(1, 2, 3, 4, 5)
+ *      .delay(200)
+ *      .throttle(250.milliseconds)
+ *      .collect { value ->
+ *          // collected values
+ *      }
+ * ```
+ *
  * @param delay The minimum time interval between consecutive emissions. Must be positive.
  * @return A new [Flow] that emits throttled values.
  *
