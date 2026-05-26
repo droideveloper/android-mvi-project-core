@@ -2,6 +2,9 @@ package com.mvi.core.environment
 
 import javax.inject.Inject
 
+/**
+ * Default implementation of [Environment] that reads from [BuildConfig].
+ */
 class EnvironmentImpl @Inject constructor() : Environment {
 
     override val flavorName: String
