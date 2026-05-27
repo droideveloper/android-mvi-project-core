@@ -10,13 +10,19 @@ import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.kotlin
 import org.jetbrains.kotlin.gradle.dsl.KotlinBaseExtension
 
+/**
+ * Configures the application-level Android build.
+ *
+ * Sets up application-specific configurations including namespace, default config,
+ * build types (debug/release), packaging options, test options, and delegates to
+ * [configureAndroidLibrary] for library configuration.
+ *
+ * @param target The project to configure as an Android application
+ */
 internal fun ApplicationExtension.configureAndroidApplication(
     target: Project,
 ) {
-    namespace = "com.open.weather"
-
     defaultConfig {
-        applicationId = "com.open.weather"
         targetSdk = target.targetSdkVersion.toInt()
         versionCode = 1
         versionName = "1.0.0"
@@ -52,6 +58,16 @@ internal fun ApplicationExtension.configureAndroidApplication(
     configureAndroidLibrary(target, true)
 }
 
+/**
+ * Configures common Android build settings shared by applications and libraries.
+ *
+ * Sets up compile SDK, Compose features (if enabled), default config with min SDK,
+ * compile options with Java 11, test options, Kotlin JVM toolchain with Java 11,
+ * and relevant dependencies (core library desugaring, Compose runtime, testing).
+ *
+ * @param target The project to configure
+ * @param isCompose Whether to enable Compose features and add Compose dependencies
+ */
 internal fun CommonExtension<*,*,*,*,*,*>.configureAndroidLibrary(
     target: Project,
     isCompose: Boolean = false,
@@ -110,6 +126,14 @@ internal fun CommonExtension<*,*,*,*,*,*>.configureAndroidLibrary(
     }
 }
 
+/**
+ * Checks whether Android resources should be included for unit tests.
+ *
+ * Returns true if either the `src/androidUnitTest` or `src/test` directories exist,
+ * indicating that this is a test target that should include Android resources.
+ *
+ * @return true if Android resources should be included, false otherwise
+ */
 internal fun Project.isAndroidResourcesShouldIncluded(): Boolean =
     layout.projectDirectory.dir("src/androidUnitTest").asFile.exists() ||
         layout.projectDirectory.dir("src/test").asFile.exists()
