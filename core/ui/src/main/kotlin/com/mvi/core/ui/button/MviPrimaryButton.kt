@@ -13,6 +13,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.mvi.core.ui.MviTheme
 
+/**
+ * Primary button component with solid background color and optional icon.
+ *
+ * This button uses the theme's primary black color as its background and white text.
+ * It supports loading state, enabled/disabled states, and optional icon display.
+ *
+ * @param text The text to display on the button
+ * @param onClick Callback invoked when the button is clicked (only if enabled and not loading)
+ * @param modifier The modifier to apply to the button
+ * @param enabled Whether the button is enabled and responds to clicks
+ * @param loading Whether the button is in a loading state (shows spinner instead of text)
+ * @param iconResource Optional icon resource to display alongside the text
+ * @param backgroundColor Custom background color for the button (default: primary black)
+ * @param contentColor Custom text color for the button (default: primary white)
+ * @param border Optional border stroke to apply to the button
+ */
 @Composable
 fun MviPrimaryButton(
     text: String,

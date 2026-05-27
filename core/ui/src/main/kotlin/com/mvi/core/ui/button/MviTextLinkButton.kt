@@ -14,6 +14,21 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextDecoration
 import com.mvi.core.ui.MviTheme
 
+/**
+ * Text link button component styled as an underlined text.
+ *
+ * This button appears as plain text with an underline, suitable for actions like "Login"
+ * or "Read more". It uses the theme's primary blue color and supports pressed/pressed states.
+ *
+ * @param text The text to display (appears as underlined text)
+ * @param onClick Callback invoked when the button is clicked
+ * @param modifier The modifier to apply to the button
+ * @param enabled Whether the button is enabled and responds to clicks
+ * @param textColor Custom text color for the button (default: primary blue)
+ * @param pressedTextColor Custom text color when pressed (default: secondary blue)
+ * @param textStyle Custom text style for the button (default: body secondary with underline)
+ * @param indication Custom ripple/indication to apply
+ */
 @Composable
 fun MviTextLinkButton(
     text: String,

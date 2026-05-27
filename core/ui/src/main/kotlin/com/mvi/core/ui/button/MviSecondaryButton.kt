@@ -12,6 +12,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.mvi.core.ui.MviTheme
 
+/**
+ * Secondary button component with outlined border and transparent background.
+ *
+ * This button displays white text on a transparent background with a white border,
+ * suitable for secondary actions or less prominent CTAs. It supports loading state and
+ * enabled/disabled states.
+ *
+ * @param text The text to display on the button
+ * @param onClick Callback invoked when the button is clicked (only if enabled and not loading)
+ * @param modifier The modifier to apply to the button
+ * @param enabled Whether the button is enabled and responds to clicks
+ * @param loading Whether the button is in a loading state (shows spinner instead of text)
+ * @param iconResource Optional icon resource to display alongside the text
+ * @param borderColor Custom border color for the button (default: primary white)
+ * @param contentColor Custom text color for the button (default: primary white)
+ */
 @Composable
 fun MviSecondaryButton(
     text: String,

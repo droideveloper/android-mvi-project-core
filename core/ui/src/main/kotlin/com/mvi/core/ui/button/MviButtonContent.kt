@@ -19,6 +19,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import com.mvi.core.ui.MviTheme
 
+/**
+ * Loading indicator component for buttons.
+ *
+ * Displays a circular progress indicator when the button is in a loading state.
+ * Uses the primary loading color and standard button icon size.
+ *
+ * @param color The color to use for the loading indicator (default: primary loading color)
+ */
 @Composable
 fun MviButtonLoadingIndicator(color: Color) {
     CircularProgressIndicator(
@@ -31,6 +39,15 @@ fun MviButtonLoadingIndicator(color: Color) {
     )
 }
 
+/**
+ * Button icon component.
+ *
+ * Displays an icon in the button with optional padding to separate it from the text.
+ * Used for action icons like arrows, refresh, etc.
+ *
+ * @param iconResource The image vector to display as the icon
+ * @param iconSize The size of the icon
+ */
 @Composable
 internal fun MviButtonIcon(
     iconResource: ImageVector,
@@ -47,6 +64,16 @@ internal fun MviButtonIcon(
     }
 }
 
+/**
+ * Button text component.
+ *
+ * Displays the text content of the button centered in the button.
+ * Applies the provided text style and color.
+ *
+ * @param text The text to display
+ * @param textStyle The text style to apply
+ * @param color The color of the text
+ */
 @Composable
 internal fun MviButtonText(
     text: String,

@@ -14,6 +14,18 @@ import androidx.compose.ui.semantics.semantics
 val DrawableResource = SemanticsPropertyKey<ImageVector>("ImageVector")
 var SemanticsPropertyReceiver.drawableResource by DrawableResource
 
+/**
+ * Image component for displaying vector images.
+ *
+ * This component displays an [ImageVector] with optional content description for accessibility.
+ * It supports custom content scaling and color filtering for flexible image rendering.
+ *
+ * @param resource The image vector to display
+ * @param modifier The modifier to apply to the image
+ * @param contentDescription Accessibility description for the image (required for non-decorative images)
+ * @param contentScale How to scale the image when the aspect ratio of the bounds differs from the image
+ * @param colorFilter Optional color filter to apply to the image
+ */
 @Composable
 fun MviImage(
     resource: ImageVector,
