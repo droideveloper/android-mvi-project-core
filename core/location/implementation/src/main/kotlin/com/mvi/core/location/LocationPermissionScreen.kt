@@ -34,6 +34,16 @@ import com.mvi.core.ui.MviTheme
 import com.mvi.core.ui.button.MviPrimaryButton
 import androidx.core.net.toUri
 
+/**
+ * Displays a permission request screen for location access.
+ *
+ * This composable presents a user-friendly interface requesting location permissions
+ * required for the weather app functionality. It handles permission states, shows
+ * rationales, and provides a button to open app settings when permissions are denied.
+ *
+ * @param permissions List of permission strings to request (default: coarse and fine location)
+ * @param onGranted Callback to invoke when all required permissions are granted
+ */
 @Composable
 fun LocationPermissionScreen(
     permissions: List<String> = listOf(
@@ -89,6 +99,17 @@ fun LocationPermissionScreen(
     }
 }
 
+/**
+ * Displays a permission screen explaining required location permissions to the user.
+ *
+ * This composable presents the rationale for requiring location permissions, lists
+ * the specific permissions needed, and provides a button to grant them. It also
+ * handles showing a rationale dialog when users deny permissions unexpectedly.
+ *
+ * @param state The mutable permissions state tracking granted and revoked permissions
+ * @param description An optional description explaining why location access is needed
+ * @param errorText An optional error message to display when permissions are rejected
+ */
 @Composable
 private fun PermissionScreen(
     state: MultiplePermissionsState,

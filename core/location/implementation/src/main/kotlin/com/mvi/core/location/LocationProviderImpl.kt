@@ -18,6 +18,13 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
+/**
+ * LocationProvider implementation using Android's FusedLocationProviderClient.
+ * Handles permission requests, location updates, and background location management.
+ *
+ * @param contextProvider Lambda providing the application context
+ * @param locationRequest Configuration for location requests (accuracy, interval, fastest, passive)
+ */
 class LocationProviderImpl @Inject constructor(
     private val contextProvider: () -> Context,
     private val locationRequest: LocationRequest,
