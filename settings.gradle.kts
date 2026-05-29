@@ -29,6 +29,8 @@ dependencyResolutionManagement {
 }
 
 include(":core:app")
+include(":core:database:gateway")
+include(":core:database:implementation")
 include(":core:environment:gateway")
 include(":core:environment:implementation")
 include(":core:coroutines")
