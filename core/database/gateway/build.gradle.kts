@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    implementation(projects.core.kotlin)
+    api(projects.core.kotlin)
 
     api(libs.room.runtime)
 }
