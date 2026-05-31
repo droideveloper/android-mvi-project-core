@@ -1,0 +1,61 @@
+package com.mvi.core.datastore
+
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.MutablePreferences
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.byteArrayPreferencesKey
+import androidx.datastore.preferences.core.doublePreferencesKey
+import androidx.datastore.preferences.core.floatPreferencesKey
+import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.core.longPreferencesKey
+import androidx.datastore.preferences.core.mutablePreferencesOf
+import androidx.datastore.preferences.core.stringPreferencesKey
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.conflate
+
+internal class InMemoryDatastore(
+    private val datastore: MutableMap<Preferences.Key<*>, Any>
+) : DataStore<Preferences> {
+
+    private val internalState = MutableSharedFlow<Preferences>(replay = 1)
+
+    override val data: Flow<Preferences>
+        get() = internalState.conflate()
+
+    init {
+        val preferences = mutablePreferencesOf()
+        datastore.forEach { (key, value) ->
+            preferences[key] = value
+        }
+        internalState.tryEmit(preferences)
+    }
+
+    override suspend fun updateData(
+        transform: suspend (t: Preferences) -> Preferences,
+    ): Preferences {
+        val preferences = mutablePreferencesOf()
+        datastore.forEach { (key, value) ->
+            preferences[key] = value
+        }
+        return transform(preferences).also {
+            datastore.clear()
+            datastore.putAll(it.asMap())
+            internalState.tryEmit(it)
+        }
+    }
+
+    private operator fun MutablePreferences.set(key: Preferences.Key<*>, value: Any) {
+        when (value) {
+            is Boolean -> this[booleanPreferencesKey(key.name)] = value
+            is Int -> this[intPreferencesKey(key.name)] = value
+            is Long -> this[longPreferencesKey(key.name)] = value
+            is Float -> this[floatPreferencesKey(key.name)] = value
+            is Double -> this[doublePreferencesKey(key.name)] = value
+            is String -> this[stringPreferencesKey(key.name)] = value
+            is ByteArray -> this[byteArrayPreferencesKey(key.name)] = value
+            else -> throw IllegalArgumentException("Cannot set value for key `$key = $value`")
+        }
+    }
+}
