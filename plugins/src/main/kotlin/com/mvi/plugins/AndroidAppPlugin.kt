@@ -1,6 +1,6 @@
 package com.mvi.plugins
 
-import com.android.build.api.dsl.ApplicationExtension
+import com.android.build.api.variant.ApplicationAndroidComponentsExtension
 import com.android.build.gradle.AppPlugin
 import com.google.devtools.ksp.gradle.KspGradleSubplugin
 import org.gradle.api.Plugin
@@ -10,7 +10,6 @@ import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradleSubplugin
-import org.jetbrains.kotlin.gradle.plugin.KotlinAndroidPluginWrapper
 
 /**
  * Gradle plugin for Android application modules with MVVM architecture.
@@ -31,7 +30,7 @@ class AndroidAppPlugin : Plugin<Project> {
      *
      * Configures:
      * - Android Application plugin
-     * - Kotlin Android support via KotlinAndroidPluginWrapper
+     * - Kotlin Android support via built-in
      * - KSP for annotation processing
      * - Compose Compiler for Jetpack Compose
      * - Application-level Android configuration
@@ -44,7 +43,6 @@ class AndroidAppPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply(AppPlugin::class)
-                apply(KotlinAndroidPluginWrapper::class)
                 apply(KspGradleSubplugin::class)
                 apply(ComposeCompilerGradleSubplugin::class)
             }
@@ -54,7 +52,7 @@ class AndroidAppPlugin : Plugin<Project> {
              * The ApplicationExtension provides access to Android application-specific
              * configuration options.
              */
-            val app = extensions.getByType<ApplicationExtension>()
+            val app = extensions.getByType<ApplicationAndroidComponentsExtension>()
             /**
              * Configures the Android application with common setup including:
              * - AndroidX libraries

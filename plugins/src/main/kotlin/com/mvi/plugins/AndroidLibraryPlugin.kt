@@ -1,6 +1,6 @@
 package com.mvi.plugins
 
-import com.android.build.api.dsl.LibraryExtension
+import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.LibraryPlugin
 import com.google.devtools.ksp.gradle.KspGradleSubplugin
 import org.gradle.api.Plugin
@@ -9,7 +9,6 @@ import org.gradle.internal.Actions.with
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
-import org.jetbrains.kotlin.gradle.plugin.KotlinAndroidPluginWrapper
 
 /**
  * Gradle plugin for Android library modules.
@@ -47,14 +46,13 @@ class AndroidLibraryPlugin : Plugin<Project> {
             /**
              * Applies the required Gradle plugins for Android library development.
              * - [LibraryPlugin]: Adds Android library support
-             * - [KotlinAndroidPluginWrapper]: Adds Kotlin with Android support
+             * - Adds Kotlin with Android support
              * - [KspGradleSubplugin]: Enables Kotlin Symbol Processing
              *
              * @param pluginManager The Gradle plugin manager
              */
             with(pluginManager) {
                 apply(LibraryPlugin::class)
-                apply(KotlinAndroidPluginWrapper::class)
                 apply(KspGradleSubplugin::class)
             }
 
@@ -63,7 +61,7 @@ class AndroidLibraryPlugin : Plugin<Project> {
              * The LibraryExtension provides access to Android library-specific
              * configuration options.
              */
-            val lib = extensions.getByType<LibraryExtension>()
+            val lib = extensions.getByType<LibraryAndroidComponentsExtension>()
             /**
              * Configures the Android library with common setup including:
              * - AndroidX libraries

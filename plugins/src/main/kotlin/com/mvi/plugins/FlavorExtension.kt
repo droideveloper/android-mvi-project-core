@@ -4,6 +4,8 @@ import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.ApplicationProductFlavor
 import com.android.build.api.dsl.CommonExtension
 import com.android.build.api.dsl.ProductFlavor
+import com.android.build.api.variant.ApplicationAndroidComponentsExtension
+import com.android.build.api.variant.LibraryAndroidComponentsExtension
 
 /**
  * Map of product flavor names to their application ID suffixes.
@@ -38,13 +40,47 @@ internal val flavors = mapOf(
  * @see flavors
  * @see applySuffixIfNeeded
  */
-internal fun CommonExtension<*, *, *, *, *, *>.configureFlavors() {
-    flavorDimensions += "default"
-    productFlavors {
-        flavors.forEach { (name, suffix) ->
-            create(name) {
-                dimension = "default"
-                applySuffixIfNeeded(this, suffix)
+internal fun ApplicationAndroidComponentsExtension.configureFlavors() {
+    finalizeDsl { extension ->
+        with(extension) {
+            flavorDimensions += "default"
+            productFlavors {
+                flavors.forEach { (name, suffix) ->
+                    create(name) {
+                        dimension = "default"
+                        applySuffixIfNeeded(this, suffix)
+                    }
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Configures product flavors for different build environments.
+ *
+ * This function sets up product flavors for mock, staging, and production builds:
+ * - Configures the "default" flavor dimension
+ * - Creates product flavors based on the [flavors] map
+ * - Applies application ID suffixes for non-production builds
+ *
+ * Product flavors enable different build configurations:
+ * - **mock**: Development environment with mock services (e.g., `com.example.app.mock`)
+ * - **staging**: Pre-production environment (e.g., `com.example.app.staging`)
+ * - **prod**: Production build (e.g., `com.example.app`)
+ *
+ * @see flavors
+ */
+internal fun LibraryAndroidComponentsExtension.configureFlavors() {
+    finalizeDsl { extension ->
+        with(extension) {
+            flavorDimensions += "default"
+            productFlavors {
+                flavors.keys.forEach { name ->
+                    create(name) {
+                        dimension = "default"
+                    }
+                }
             }
         }
     }
@@ -68,13 +104,12 @@ internal fun CommonExtension<*, *, *, *, *, *>.configureFlavors() {
  * @see flavors
  * @see configureFlavors
  */
-internal fun CommonExtension<*, *, *, *, *, *>.applySuffixIfNeeded(
+internal fun ApplicationAndroidComponentsExtension.applySuffixIfNeeded(
     productFlavor: ProductFlavor,
     suffix: String? = null,
 ) {
-    val isApplication = this is ApplicationExtension
     if (suffix != null) {
-        if (isApplication && productFlavor is ApplicationProductFlavor) {
+        if (productFlavor is ApplicationProductFlavor) {
             productFlavor.applicationIdSuffix = suffix
         }
     }

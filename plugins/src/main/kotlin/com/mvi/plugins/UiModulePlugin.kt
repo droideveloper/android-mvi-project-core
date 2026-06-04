@@ -1,6 +1,6 @@
 package com.mvi.plugins
 
-import com.android.build.api.dsl.LibraryExtension
+import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.internal.Actions.with
@@ -41,7 +41,7 @@ class UiModulePlugin : Plugin<Project> {
              * The LibraryExtension provides access to Android library-specific
              * configuration options.
              */
-            val lib = extensions.getByType<LibraryExtension>()
+            val lib = extensions.getByType<LibraryAndroidComponentsExtension>()
             /**
              * Configures the Android library with common setup including:
              * - AndroidX libraries
