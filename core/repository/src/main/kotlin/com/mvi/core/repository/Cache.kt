@@ -113,7 +113,7 @@ internal class InMemoryCache<T>(
      * Validation Logic:
      * 1. If [cache] is null → Return [CacheException.Empty]
      * 2. If [cache] exists but [mark.elapsedNow() > maxAge] → Return [CacheException.Expired]
-     * 3. Otherwise → Return the cached value wrapped in [Result.Success]
+     * 3. Otherwise, → Return the cached value wrapped in [Result.success]
      *
      * @param maxAge The maximum acceptable age for the cached value.
      * @return A [Result] containing either the cached value or a failure indicating:
@@ -154,3 +154,22 @@ internal class InMemoryCache<T>(
         cache = null
     }
 }
+
+/**
+ * Creates a [Cache] instance backed by an in-memory data structure.
+ *
+ * This implementation provides high-performance access as it resides entirely in the
+ * application's memory space. Note that since this cache is volatile, all entries
+ * will be lost if the process is restarted or the heap is cleared.
+ *
+ * The underlying engine uses [TimeSource.Monotonic] to handle expiration logic,
+ * ensuring that time-based calculations remain consistent even if the system
+ * wall-clock is adjusted (e.g., via NTP synchronization).
+ *
+ * @return A new instance of a [Cache] capable of storing elements of type [T].
+ * @see InMemoryCache
+ * @see TimeSource.Monotonic
+ */
+public fun <T> inMemory(): Cache<T> = InMemoryCache<T>(
+    timeSource = TimeSource.Monotonic,
+)
