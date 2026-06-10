@@ -22,5 +22,10 @@ dependencies {
     api(libs.androidx.test.manifest)
     api(libs.androidx.test.junit4)
     api(libs.androidx.espresso.core)
+
+    api(libs.bundles.preview)
+    api(libs.bundles.roborazzi)
+
     api(libs.robolectric)
 }
+

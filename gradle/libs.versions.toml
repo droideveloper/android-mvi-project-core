@@ -48,7 +48,7 @@ robo-lectiric = "4.16.1"
 assertj = "3.27.7"
 mockk = "1.14.11"
 
-preview-scanner = "0.8.2"
+preview-scanner = "0.9.0"
 roborazzi = "1.63.0"
 
 # android app values
@@ -134,8 +134,8 @@ androidx-espresso-idling = { group = "androidx.test.espresso.idling", name = "id
 androidx-espresso-idling-resources = { group = "androidx.test.espresso", name = "espresso-idling-resource", version.ref = "espresso" }
 robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robo-lectiric" }
 
-preview-scanner-android = { group = "sergio.sastre.composable.preview.scanner", name = "android", version.ref = "preview-scanner" }
-preview-scanner-core = { group = "sergio.sastre.composable.preview.scanner", name = "core", version.ref = "preview-scanner" }
+preview-scanner-android = { group = "io.github.sergio-sastre.ComposablePreviewScanner", name = "android", version.ref = "preview-scanner" }
+preview-scanner-core = { group = "io.github.sergio-sastre.ComposablePreviewScanner", name = "core", version.ref = "preview-scanner" }
 roborazzi-core = { group = "io.github.takahirom.roborazzi", name = "roborazzi-core", version.ref = "roborazzi" }
 roborazzi-compose = { group = "io.github.takahirom.roborazzi", name = "roborazzi-compose", version.ref = "roborazzi" }
 roborazzi-junit-rule = { group = "io.github.takahirom.roborazzi", name = "roborazzi-junit-rule", version.ref = "roborazzi" }

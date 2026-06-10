@@ -34,7 +34,7 @@ import org.robolectric.annotation.Config
  * ```
  *
  * ## SDK Coverage
- * Tests are configured to run against API 26 (Android 8.0 N) by default.
+ * Tests are configured to run against API 33 (Android 13.0 Tiramisu) by default.
  * Add additional SDK versions to the [Config.sdk] annotation as needed.
  *
  * @param sdk The Android SDK versions to test against
@@ -43,7 +43,7 @@ import org.robolectric.annotation.Config
  */
 @Config(
     sdk = [
-        Build.VERSION_CODES.N,
+        Build.VERSION_CODES.TIRAMISU,
     ],
 )
 abstract class AbsAndroidUnitTest {

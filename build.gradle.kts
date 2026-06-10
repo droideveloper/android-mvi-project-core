@@ -11,5 +11,6 @@ plugins {
 }
 
 tasks.register("clean", Delete::class.java) {
+    description = "Clears subprojects` /build directories"
     delete(rootProject.layout.buildDirectory)
 }
