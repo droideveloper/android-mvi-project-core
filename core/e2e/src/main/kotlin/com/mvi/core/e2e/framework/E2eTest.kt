@@ -60,6 +60,6 @@ interface E2eTest<A : ComponentActivity> {
  *
  * @param block A lambda expression containing the test steps to perform on the [ComposeTestRule].
  */
-fun <A : ComponentActivity> E2eTest<A>.lauch(block: ComposeTestRule.() -> Unit) {
+fun <A : ComponentActivity> E2eTest<A>.launch(block: ComposeTestRule.() -> Unit) {
     launchForUserState(state = UserState.Nothing, block = block)
 }
