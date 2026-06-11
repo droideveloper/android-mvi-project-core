@@ -11,9 +11,11 @@ import sergio.sastre.composable.preview.scanner.core.preview.ComposablePreview
  * This object implements an internal caching mechanism to ensure that the scan
  * operation (which involves reflection/tree traversal) is only performed once
  * during the test execution lifecycle.
+ * @param packageName The full package name to scan (e.g., "com.mvi.core").
  */
-object PreviewProvider {
-
+class PreviewProvider constructor(
+    private val packageName: String,
+) {
     private var previews: List<ComposablePreview<AndroidPreviewInfo>> = emptyList()
 
     /**
@@ -22,10 +24,9 @@ object PreviewProvider {
      * If this is the first call, it initiates a scan of the [packageName]
      * and includes private previews by default.
      *
-     * @param packageName The full package name to scan (e.g., "com.mvi.core").
      * @return A list of discovered [ComposablePreview] objects.
      */
-    fun get(packageName: String): List<ComposablePreview<AndroidPreviewInfo>> =
+    fun get(): List<ComposablePreview<AndroidPreviewInfo>> =
         when {
             previews.isEmpty() ->
                 AndroidComposablePreviewScanner()

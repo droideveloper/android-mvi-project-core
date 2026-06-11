@@ -25,10 +25,13 @@ import org.robolectric.annotation.GraphicsMode
  *
  *     companion object {
  *
+ *         private val previewProvider = PreviewProvider(packageName = "com.mvi.core")
+ *
  *         @JvmStatic
  *         @ParameterizedRobolectricTestRunner.Parameters(name = "{0}")
  *         fun values(): List<ScreenshotTestSuite> =
- *             PreviewProvider.get(packageName = "com.mvi.core")
+ *             previewProvider
+ *                 .get()
  *                 .map { preview ->
  *                     ScreenshotTestSuite(
  *                         preview = preview,
