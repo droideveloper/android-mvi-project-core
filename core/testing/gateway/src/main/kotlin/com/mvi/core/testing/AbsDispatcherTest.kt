@@ -20,12 +20,16 @@ import org.junit.Before
  *
  * ## Usage
  * ```kotlin
- * class MyFeatureTest : AbsDispatcherTest() {
- *     @get:Rule val composeContentRule = createAndroidComposeRule<Activity>()
+ * class MyUsecaseTest : AbsDispatcherTest() {
  *
- *     @Before
- *     fun setup() {
- *         composeContentRule.setContent { /* UI */ }
+ *     private val myUsecase = MyUsecase()
+ *
+ *     @Test
+ *     fun `given xxx state than yyy observed/state/failure`() = runTest {
+ *         val result = myUsecase()
+ *
+ *         val actual = result.getOrThrow()
+ *         assertThat(actual, expected).isEquals()
  *     }
  * }
  * ```
@@ -36,7 +40,6 @@ import org.junit.Before
  * careful testing to ensure proper completion.
  *
  * @see UnconfinedTestDispatcher
- * @see ComposeContentTestRule
  */
 abstract class AbsDispatcherTest {
 

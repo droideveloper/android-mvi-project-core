@@ -4,7 +4,6 @@ import android.os.Build
 import androidx.activity.ComponentActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.test.junit4.ComposeContentTestRule
-import androidx.compose.ui.test.junit4.ComposeTestRule
 import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import org.junit.Rule
 import org.robolectric.annotation.Config
@@ -39,7 +38,6 @@ import org.robolectric.annotation.Config
  *
  * @param sdk The Android SDK versions to test against
  * @see ComposeContentTestRule
- * @see ComposeTestRule
  */
 @Config(
     sdk = [
@@ -55,7 +53,7 @@ abstract class AbsAndroidUnitTest {
      * or to provide a custom rule configuration.
      */
     @get:Rule
-    val testRule: ComposeTestRule = createAndroidComposeRule<ComponentActivity>()
+    val testRule: ComposeContentTestRule = createAndroidComposeRule<ComponentActivity>()
 
     /**
      * Convenience extension function to set the Compose content on the test rule.
@@ -65,11 +63,10 @@ abstract class AbsAndroidUnitTest {
      *
      * @param content The Composable UI to set as the test screen
      */
-    fun ComposeTestRule.setScreen(
+    fun ComposeContentTestRule.setScreen(
         content: @Composable () -> Unit,
     ) {
-        if (this is ComposeContentTestRule) {
-            setContent { content() }
-        }
+        // may be wrap it with your theme for app or content or ui of feature
+        setContent { content() }
     }
 }
