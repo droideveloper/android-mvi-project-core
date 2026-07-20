@@ -42,7 +42,9 @@ internal fun ApplicationAndroidComponentsExtension.configureAndroidApplication(
                     applicationIdSuffix = ".debug"
                 }
                 release {
-                    isMinifyEnabled = true
+                    optimization {
+                        enable = true
+                    }
                 }
             }
 
@@ -64,7 +66,7 @@ internal fun ApplicationAndroidComponentsExtension.configureAndroidApplication(
             with(target) {
                 extensions.getByType<KotlinBaseExtension>().apply {
                     jvmToolchain {
-                        languageVersion.set(JavaLanguageVersion.of(11))
+                        languageVersion.set(JavaLanguageVersion.of(javaVersion))
                     }
                 }
 
@@ -132,7 +134,7 @@ internal fun LibraryAndroidComponentsExtension.configureAndroidLibrary(
             with(target) {
                 extensions.getByType<KotlinBaseExtension>().apply {
                     jvmToolchain {
-                        languageVersion.set(JavaLanguageVersion.of(11))
+                        languageVersion.set(JavaLanguageVersion.of(javaVersion))
                     }
                 }
 

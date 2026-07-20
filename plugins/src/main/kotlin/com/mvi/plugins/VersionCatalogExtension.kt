@@ -47,6 +47,13 @@ internal val Project.targetSdkVersion
 internal val Project.minSdkVersion
     get() = libs.findVersion("android.minSdk")
 
+/**
+ * Extension property to get the minimum java version from the version catalog.
+ *
+ * @return The minimum java version.
+ */
+internal val Project.javaVersion
+    get() = 11
 
 /**
  * Converts an optional [Provider] of module dependency to a [MinimalExternalModuleDependency].

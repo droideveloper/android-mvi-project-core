@@ -1,6 +1,6 @@
 [versions]
 agp = "9.2.1"
-kotlin = "2.4.0"
+kotlin = "2.4.10"
 
 kotlin-serilization = "1.11.0"
 kotlin-datetime = "0.8.0"
@@ -10,34 +10,34 @@ kotlin-coroutines = "1.11.0"
 core-ktx = "1.19.0"
 appcompat = "1.7.1"
 material = "1.14.0"
-android-tools = "32.2.1"
+android-tools = "32.3.0"
 desugar-jdk-libs = "2.1.5"
-compose = "1.11.2"
+compose = "1.11.4"
 activity-compose = "1.13.0"
 room = "2.8.4"
 datastore = "1.2.1"
-lifecycle = "2.10.0"
+lifecycle = "2.11.0"
 navigation = "2.9.8"
 material-icons = "1.7.8"
 material3 = "1.4.0"
-play-services-location = "21.3.0"
+play-services-location = "21.4.0"
 play-services-coroutines = "1.11.0"
 
 splashscreen = "1.2.0"
 multidex = "2.0.1"
 
-coil = "3.4.0"
+coil = "3.5.0"
 
 # ksp
 ksp = "2.3.9"
 
 # dependency injection
-dagger2 = "2.59.2"
+dagger2 = "2.60.1"
 javax = "1"
 
 # network
 retrofit = "3.0.0"
-okhttp = "5.3.2"
+okhttp = "5.4.0"
 
 # test lib versions
 junit = "4.13.2"
@@ -48,8 +48,8 @@ robo-lectiric = "4.16.1"
 assertj = "3.27.7"
 mockk = "1.14.11"
 
-preview-scanner = "0.9.0"
-roborazzi = "1.63.0"
+preview-scanner = "0.9.1"
+roborazzi = "1.70.0"
 
 # android app values
 android-compileSdk = "37"

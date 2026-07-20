@@ -51,7 +51,7 @@ class DataModulePlugin : Plugin<Project> {
             val jvm = extensions.getByType<KotlinJvmExtension>()
 
             jvm.jvmToolchain {
-                languageVersion.set(JavaLanguageVersion.of(11))
+                languageVersion.set(JavaLanguageVersion.of(javaVersion))
             }
             /**
              * Configures the dependency management for the data-jvm-library.
