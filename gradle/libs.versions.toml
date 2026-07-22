@@ -1,4 +1,7 @@
 [versions]
+# TODO can not bump to 9.3.0 because of
+# https://mvnrepository.com/artifact/com.android.tools.build/gradle/versions not available in here for
+# com.android.tools.build:gradle:9.3.0
 agp = "9.2.1"
 kotlin = "2.4.10"
 
