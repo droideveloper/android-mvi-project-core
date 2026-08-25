@@ -49,7 +49,7 @@ assertj = "3.27.7"
 mockk = "1.14.11"
 
 preview-scanner = "0.9.3"
-roborazzi = "1.72.0"
+roborazzi = "1.73.0"
 
 # android app values
 android-compileSdk = "37"
