@@ -1,5 +1,5 @@
 [versions]
-agp = "9.4.0"
+agp = "9.4.1"
 kotlin = "2.4.20"
 
 kotlin-serilization = "1.11.0"
@@ -10,7 +10,7 @@ kotlin-coroutines = "1.11.0"
 core-ktx = "1.19.0"
 appcompat = "1.8.0"
 material = "1.14.0"
-android-tools = "32.4.0"
+android-tools = "32.4.1"
 desugar-jdk-libs = "2.1.5"
 compose = "1.12.1"
 activity-compose = "1.13.0"
@@ -29,7 +29,7 @@ multidex = "2.0.1"
 coil = "3.6.2"
 
 # ksp
-ksp = "2.3.9"
+ksp = "2.3.12"
 
 # dependency injection
 dagger2 = "2.60.1"
@@ -49,7 +49,7 @@ assertj = "3.27.7"
 mockk = "1.14.11"
 
 preview-scanner = "0.9.3"
-roborazzi = "1.73.0"
+roborazzi = "1.74.0"
 
 # android app values
 android-compileSdk = "37"
