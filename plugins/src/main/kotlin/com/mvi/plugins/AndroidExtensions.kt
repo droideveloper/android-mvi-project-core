@@ -25,7 +25,11 @@ internal fun ApplicationAndroidComponentsExtension.configureAndroidApplication(
     finalizeDsl { extension ->
         with(extension) {
             defaultConfig {
-                compileSdk = target.compileSdkVersion.toInt()
+                compileSdk {
+                    version = release(target.compileSdkVersion.toInt()) {
+                        minorApiLevel = target.compileSdkMinorVersion.toInt()
+                    }
+                }
                 minSdk = target.minSdkVersion.toInt()
                 targetSdk = target.targetSdkVersion.toInt()
 
@@ -102,7 +106,11 @@ internal fun LibraryAndroidComponentsExtension.configureAndroidLibrary(
 ) {
     finalizeDsl { extension ->
         with(extension) {
-            compileSdk = target.compileSdkVersion.toInt()
+            compileSdk {
+                version = release(target.compileSdkVersion.toInt()) {
+                    minorApiLevel = target.compileSdkMinorVersion.toInt()
+                }
+            }
 
             if (isCompose) {
                 buildFeatures {

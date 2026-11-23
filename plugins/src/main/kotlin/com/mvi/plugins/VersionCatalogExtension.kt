@@ -28,8 +28,16 @@ internal val Project.libs
  *
  * @return The compile SDK version string from libs.toml.
  */
+
 internal val Project.compileSdkVersion
     get() = libs.findVersion("android.compileSdk")
+/**
+* Extension property to get the compile SDK minor version from the version catalog.
+*
+* @return The compile SDK minor version string from libs.toml.
+*/
+internal val Project.compileSdkMinorVersion
+    get() = libs.findVersion("android.compileSdk.minor")
 
 /**
  * Extension property to get the target SDK version from the version catalog.
