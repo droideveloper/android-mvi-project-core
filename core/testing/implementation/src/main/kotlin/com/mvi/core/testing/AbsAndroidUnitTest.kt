@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.test.junit4.ComposeContentTestRule
 import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
+import com.github.takahirom.roborazzi.RobolectricDeviceQualifiers
 import org.junit.Rule
 import org.robolectric.annotation.Config
 
@@ -37,12 +38,14 @@ import org.robolectric.annotation.Config
  * Add additional SDK versions to the [Config.sdk] annotation as needed.
  *
  * @param sdk The Android SDK versions to test against
+ * @param qualifiers the Android device config as pixel 5 phone
  * @see ComposeContentTestRule
  */
 @Config(
     sdk = [
         Build.VERSION_CODES.TIRAMISU,
     ],
+    qualifiers = RobolectricDeviceQualifiers.Pixel5,
 )
 abstract class AbsAndroidUnitTest {
 
